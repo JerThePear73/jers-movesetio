@@ -90,9 +90,6 @@ local function mario_update(m)
     local e = gEvilswagMoveset[m.playerIndex]
     local s = gPlayerSyncTable[m.playerIndex]
     mario_update_spin_input(m)
-    if m.action == ACT_GROUND_POUND then
-        m.marioObj.header.gfx.angle.y = m.faceAngle.y
-    end
     if m.pos.y == m.floorHeight then
         e.canTornado = true
     end
@@ -209,6 +206,10 @@ hook_event(HOOK_MARIO_UPDATE, mario_update)
 local function mario_set_action(m)
     local e = gEvilswagMoveset[m.playerIndex]
     local s = gPlayerSyncTable[m.playerIndex]
+
+    if m.action == ACT_GROUND_POUND then
+        m.marioObj.header.gfx.angle.y = m.faceAngle.y
+    end
 
     -- spin jump
     if e.movesEnabled[ACT_SPINJUMP] then
