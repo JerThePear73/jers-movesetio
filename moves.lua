@@ -127,7 +127,7 @@ local function mario_update(m)
             play_character_sound(m, CHAR_SOUND_YAHOO_WAHA_YIPPEE)
             e.gfx.y = 0x15000
         end
-        if m.vel.y > 0 then
+        if m.actionTimer < 15 then
             set_mario_particle_flags(m, PARTICLE_DUST, 0)
             m.vel.y = 60 - (m.actionTimer*4)
         end
