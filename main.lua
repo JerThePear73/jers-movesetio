@@ -1,4 +1,4 @@
--- name: \\#0f0\\Ev\\#0f8\\il\\#0fa\\sw\\#0ff\\ag Moveset [WIP]
+-- name: \\#8f0\\Jer's Movesetio [WIP]
 -- description: A very customizable, vanilla friendly moveset mod.
 
 local ANGLE_QUEUE_SIZE = 9
