@@ -65,13 +65,16 @@ local function act_midair_spin(m)
     local e = gEvilswagMoveset[m.playerIndex]
 
     smlua_anim_util_set_animation(m.marioObj, "evilswag_moveset_anim_midair_spin")
+    if m.actionTimer == 1 then
+        play_sound_with_freq_scale(SOUND_ACTION_SPIN, m.marioObj.header.gfx.cameraToObject, 3)
+    end
     if m.actionTimer < 5 then
         m.vel.y = math.clamp(m.vel.y, 0, 10)
     end
     if m.actionTimer >= 10 then
         m.marioBodyState.handState = MARIO_HAND_OPEN
         m.marioBodyState.eyeState = MARIO_EYES_LOOK_DOWN
-    else
+    elseif m.actionTimer > 0 then
         local handPos = gVec3fZero{}
         get_mario_anim_part_pos(m, MARIO_ANIM_PART_LEFT_HAND, handPos)
         spawn_non_sync_object(id_bhvSparkle, E_MODEL_SPARKLES_ANIMATION, handPos.x, handPos.y, handPos.z, nil)
@@ -184,11 +187,10 @@ local function mario_update(m)
         [ACT_STEEP_JUMP]    = true,
     }
     if midairTwirlActions[m.action] and m.input & INPUT_A_PRESSED ~= 0 and not s.midairSpin and m.vel.y < 10 and e.movesEnabled[ACT_MIDAIR_SPIN] then
-        if m.action ~= ACT_FREEFALL or (m.actionArg ~= ARG_MIDAIR_SPIN and m.actionArg ~= ARG_TORNADO) then
+        if m.action ~= ACT_FREEFALL or (m.actionArg ~= ARG_MIDAIR_SPIN and m.actionArg ~= ARG_TORNADO) and m.playerIndex == 0 then
             s.midairSpin = true
             m.actionTimer = 0
             m.actionArg = 0
-            play_sound_with_freq_scale(SOUND_ACTION_SPIN, m.marioObj.header.gfx.cameraToObject, 3)
             if m.action == ACT_SIDE_FLIP then
                 m.action = ACT_DOUBLE_JUMP
             elseif m.action == ACT_JUMP or m.action == ACT_WALL_KICK_AIR or m.action == ACT_STEEP_JUMP then

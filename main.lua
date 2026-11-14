@@ -28,8 +28,8 @@ for i = 0, MAX_PLAYERS - 1 do
         [ACT_GP_JUMP]       = mod_storage_load_bool("GP JUMP", true),
         [ACT_SLOW_KICK]     = mod_storage_load_bool("SLOW KICK", true),
         [ACT_SPINJUMP]      = mod_storage_load_bool("SPINJUMP", true),
-        [ACT_TORNADO]       = mod_storage_load_bool("ACT_TORNADO", true),
-        [ACT_MIDAIR_SPIN]   = mod_storage_load_bool("ACT_MIDAIR_SPIN", true),
+        [ACT_TORNADO]       = mod_storage_load_bool("TORNADO", true),
+        [ACT_MIDAIR_SPIN]   = mod_storage_load_bool("MIDAIR SPIN", true),
     }
     e.canTornado = true
     e.prevVel = 0
